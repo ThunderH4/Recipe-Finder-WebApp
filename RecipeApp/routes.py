@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, session, jsonify, abort, json
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session, jsonify, json
 import requests
-from datetime import datetime
 from flask_login import login_user, login_required, logout_user, current_user
 from RecipeApp.forms import RegistrationForm, LoginForm, PreferenceForm
 from RecipeApp.models import db, User, UserPreference
 from bs4 import BeautifulSoup
+from .config import Config
 
 main = Blueprint("main", __name__)
 
@@ -113,7 +113,7 @@ def recipe_input():
 @main.route("/upload-image")
 @login_required
 def upload_image():
-    return render_template('upload_image.html')  # We'll create this next
+    return render_template('upload_image.html')
 
 
 # manual_input route
@@ -139,14 +139,13 @@ def manual_input():
 @main.route("/api/ingredient-suggestions")
 def ingredient_suggestions():
     query = request.args.get('query', '')
-    API_KEY = '0ceb03c406e94244a2f5576a172c773d'  # 🔑 Replace with your key
+    API_KEY = Config.SPOONACULAR_API_KEY  # 🔑 Replace with your key
     url = f'https://api.spoonacular.com/food/ingredients/autocomplete?query={query}&number=5&apiKey={API_KEY}'
     response = requests.get(url)
     suggestions = [ingredient['name'] for ingredient in response.json()]
     return jsonify(suggestions)
 
 
-# RecipeApp/routes.py
 @main.route("/preferences", methods=['GET', 'POST'])
 @login_required
 def preferences():
@@ -278,8 +277,8 @@ def recommendations():
     # Edamam API parameters
     params = {
         'q': ' '.join(ingredients),
-        'app_id': '0a8c40bf',  # Your Edamam app ID
-        'app_key': 'fe725df5d4b1f5da04f725e546c217c4',  # Your Edamam app key
+        'app_id': Config.EDAMAM_API_APP_ID,  # Your Edamam app ID
+        'app_key': Config.EDAMAM_API_APP_KEY,  # Your Edamam app key
         'type': 'public',
         'from': 0,
         'to': 5
@@ -318,7 +317,7 @@ def recommendations():
             params=params,
             headers={
                 'Accept': 'application/json',
-                'Edamam-Account-User': 'jeolsh0704'  # Your Edamam account identifier
+                'Edamam-Account-User': Config.EDAMAM_API_USER_ID  # Your Edamam account identifier
             },
             timeout=10
         )
@@ -363,14 +362,14 @@ def recipe_detail(recipe_id):
     try:
         # Edamam API call for single recipe
         params = {
-            'app_id': '0a8c40bf',
-            'app_key': 'fe725df5d4b1f5da04f725e546c217c4',
+            'app_id': Config.EDAMAM_API_APP_ID,
+            'app_key': Config.EDAMAM_API_APP_KEY,
             'type': 'public'
         }
         
         headers = {
             'Accept': 'application/json',
-            'Edamam-Account-User': 'jeolsh0704'  # Your account identifier
+            'Edamam-Account-User': Config.EDAMAM_API_USER_ID  # Your account identifier
         }
 
         response = requests.get(
@@ -424,7 +423,7 @@ def detect_ingredients():
         response = requests.post(
             imagga_url,
             files={'image': image},
-            auth=('acc_133549f38b4202e', '4faf211ee7d19c02e1217f4d2bb3087c')
+            auth=(Config.IMAGGA_API_KEY, Config.IMAGGA_API_SECRET)
         )
         response.raise_for_status()
         tags = response.json().get('result', {}).get('tags', [])
