@@ -1,0 +1,63 @@
+# Recipe Finder App 🍳
+
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-2.0%2B-lightgrey)](https://flask.palletsprojects.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+A web service that recommends recipes based on ingredients detected from images or manual input and user preferences.
+
+![App Screenshot](https://via.placeholder.com/800x400?text=Recipe+Finder+Screenshot)
+
+## Features ✨
+- 🖼️ Image-based ingredient detection
+- ✍️ Manual ingredient input with autocomplete
+- 🧑‍🍳 Recipe recommendations based on preferences
+- 🔐 User authentication
+- 📱 Responsive design
+
+## Installation ⚙️
+1. Clone repository:
+```bash
+git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
+cd REPO_NAME
+```
+
+2. Create virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate  # Windows
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Create `.env` file:
+```env
+SECRET_KEY=your_secret_key
+DATABASE_URL=sqlite:///recipeapp.db
+SPOONACULAR_API_KEY=your_api_key
+IMAGGA_API_KEY=your_imagga_key
+IMAGGA_API_SECRET=your_imagga_secret
+```
+
+5. Run the app:
+```bash
+flask run
+```
+
+## Usage 🚀
+1. Register/Login
+2. Choose input method:
+   - 📸 Upload ingredient image
+   - ⌨️ Manual ingredient entry
+3. Set preferences (diet, time, etc.)
+4. Get recipe recommendations
+5. Save favorite recipes
+
+## API Keys 🔑
+Get free API keys from:
+- [Spoonacular](https://spoonacular.com/food-api)
+- [Imagga](https://imagga.com/)
