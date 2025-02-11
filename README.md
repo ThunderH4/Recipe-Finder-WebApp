@@ -27,7 +27,7 @@ A web service that recommends recipes based on ingredients detected from images 
 1. Clone repository:
 ```bash
 git clone https://github.com/ThunderH4/Recipe-Finder-WebApp.git
-cd REPO_NAME
+cd Recipe-Finder-WebApp
 ```
 
 2. Create virtual environment:
@@ -49,6 +49,9 @@ DATABASE_URL=sqlite:///recipeapp.db
 SPOONACULAR_API_KEY=your_api_key
 IMAGGA_API_KEY=your_imagga_key
 IMAGGA_API_SECRET=your_imagga_secret
+EDAMAM_API_USER_ID=your_edamam_user_id
+EDAMAM_API_APP_KEY=your_edamam_app_key
+EDAMAM_API_APP_ID=your_edamam_app_id
 ```
 
 5. Run the app:
@@ -63,9 +66,9 @@ flask run
    - ⌨️ Manual ingredient entry
 3. Set preferences (diet, time, etc.)
 4. Get recipe recommendations
-5. Save favorite recipes
 
 ## API Keys 🔑
 Get free API keys from:
 - [Spoonacular](https://spoonacular.com/food-api)
 - [Imagga](https://imagga.com/)
+- [Edamam](https://www.edamam.com/)
