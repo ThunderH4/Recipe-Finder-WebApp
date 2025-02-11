@@ -1,0 +1,22 @@
+<nav class="navbar glass-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('main.home') }}">QuickRecipe</a>
+        <div class="navbar-items">
+            {% if current_user.is_authenticated %}
+                <div class="d-flex align-items-center gap-3">
+                    <a href="{{ url_for('main.profile') }}" class="profile-link">
+                        {{ current_user.email.split('@')[0] }}
+                    </a>
+                    <form action="{{ url_for('main.logout') }}" method="POST" class="m-0">
+                        <button type="submit" class="btn btn-custom">Logout</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="d-flex gap-3">
+                    <a class="btn btn-custom" href="{{ url_for('main.register') }}">Register</a>
+                    <a class="btn btn-custom" href="{{ url_for('main.login') }}">Login</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

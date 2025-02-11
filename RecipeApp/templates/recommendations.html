@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="recommendations-container">
+    <h1 class="recommendations-title">Recommended Recipes</h1>
+    
+    {% if not recipes %}
+    <div class="no-results">
+        <i class="fas fa-utensils"></i>
+        <p>No recipes found. Try adjusting your preferences or adding more ingredients.</p>
+    </div>
+    {% else %}
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+        <div class="recipe-card">
+            <div class="recipe-image-container">
+                <img src="{{ recipe.image }}" alt="{{ recipe.title }}" class="recipe-image">
+                <div class="recipe-time">
+                    <i class="fas fa-clock"></i> {{ recipe.time }} mins
+                </div>
+            </div>
+            
+            <div class="recipe-content">
+                <!-- Title Section -->
+                <div class="recipe-header">
+                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                </div>
+
+                <!-- Servings & Calories -->
+                <div class="recipe-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>{{ recipe.servings }} serv</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-fire"></i>
+                        <span>{{ recipe.calories }} kcal</span>
+                    </div>
+                </div>
+
+                <!-- Ingredients List -->
+                <div class="ingredients-list">
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        {% for ingredient in recipe.ingredients[:4] %}
+                        <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Buttons -->
+                <div class="recipe-actions">
+                    <a href="{{ url_for('main.recipe_detail', recipe_id=recipe.uri) }}" class="btn-view-recipe">
+                        <i class="fas fa-book-open"></i> View Recipe
+                    </a>
+                    <a href="{{ recipe.url }}" target="_blank" class="btn-source">
+                        <i class="fas fa-external-link-alt"></i> Source
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

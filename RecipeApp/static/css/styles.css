@@ -1,0 +1,1330 @@
+/* styles.css */
+/* Custom Properties */
+:root {
+    --bg-primary: #1e1e1e;
+    --nav-bg: rgba(50, 50, 50, 0.95);
+    --primary-accent: rgba(173, 216, 230, 0.9);
+    --primary-accent-hover: rgba(135, 206, 250, 1);
+}
+
+/* Global Styles */
+body {
+    background-color: var(--bg-primary);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Glass Navbar */
+.glass-navbar {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+}
+
+.glass-navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo Styling */
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(45deg, #00b4d8, #90e0ef);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover::after {
+    transform: scaleX(1);
+}
+
+/* Button Styling */
+.btn-custom {
+    background: var(--primary-accent);
+    color: #1e1e1e !important;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    margin-left: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-custom:hover {
+    background: var(--primary-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .glass-navbar {
+        padding: 0.75rem 0;
+    }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+        -webkit-text-stroke: 0.8px white;
+    }
+    
+    .navbar-brand::after {
+        bottom: -3px;
+        height: 1.5px;
+    }
+    
+    .btn-custom {
+        padding: 0.4rem 1rem;
+        margin-left: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Form Styling */
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 2px rgba(173, 216, 230, 0.3);
+}
+
+/* Flash Messages */
+.flash-messages {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 100%;
+    max-width: 400px;
+    padding: 0 15px;
+}
+
+.notification {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    opacity: 1;
+    transform: translateY(0);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    background: rgba(50, 50, 50, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+/* Alert Colors */
+.alert-success {
+    background: rgba(105, 222, 108, 0.65);
+}
+
+.alert-danger {
+    background: rgba(245, 88, 77, 0.65);
+}
+
+.alert-warning {
+    background: rgba(255, 243, 133, 0.65);
+    color: black;
+}
+
+.alert-info {
+    background: rgba(173, 216, 230, 0.65);
+}
+
+/* Navbar Items */
+.navbar-items {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Remove form margins */
+.navbar-items form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Nickname styling */
+.navbar-items span {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+/* Profile Page */
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.profile-info {
+    margin-top: 2rem;
+}
+
+.info-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 5px;
+}
+
+.label {
+    font-weight: 500;
+    color: var(--primary-accent);
+    margin-right: 1rem;
+}
+
+.value {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.history-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+}
+
+.history-section h3 {
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.placeholder-content {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Profile link in navbar */
+.profile-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.profile-link:hover {
+    color: var(--primary-accent) !important;
+}
+
+/* Home Page */
+.home-container {
+    padding: 2rem 1rem;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.action-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.action-card h3 {
+    color: var(--primary-accent);
+    margin-bottom: 0.5rem;
+}
+
+.action-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.input-option {
+    text-decoration: none;
+    color: inherit;
+}
+
+.input-option:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Welcome Section */
+.welcome-header {
+    text-align: center;
+    margin: 2rem 0 4rem;
+    min-height: 150px;
+}
+
+.animated-container {
+    overflow: hidden;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Subtitle Animation */
+.sub-title {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    border-right: 2px solid var(--primary-accent);
+    white-space: nowrap;
+    margin: 10px auto;
+    max-width: fit-content;
+    animation: 
+        typeWriter 3.5s steps(40) 1s forwards,
+        blinkCursor 0.75s step-end infinite;
+    opacity: 0;
+}
+
+@keyframes typeWriter {
+    from { 
+        width: 0;
+        opacity: 1;
+    }
+    to { 
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-accent) }
+}
+
+/* Card Animations */
+.action-cards {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.5s forwards;
+}
+
+.action-card {
+    transform: scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-card:hover {
+    transform: scale(1);
+    border: 2px solid var(--primary-accent) !important;
+    box-shadow: 0 8px 20px rgba(173, 216, 230, 0.2);
+}
+
+/* Keyframes */
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Recipe Input Page */
+.input-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.input-option {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.input-option:hover {
+    border-color: var(--primary-accent);
+    transform: scale(1.02);
+}
+
+.input-option i {
+    font-size: 2.5rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+/* Manual Input Page Styles */
+.ingredient-input {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: rgba(173, 216, 230, 0.1);
+    border: 1px solid var(--primary-accent);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0.2rem;
+    cursor: default;
+}
+
+.tag-remove {
+    color: var(--primary-accent);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-left: 0.3rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.tag-remove:hover {
+    color: #fdfdfd;
+}
+
+#ingredientInput {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding-left: 2.5rem;
+}
+
+#ingredientInput:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 2px rgba(173, 216, 230, 0.2);
+}
+
+.suggestions {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(60, 60, 60, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.2s ease;
+}
+
+.suggestions.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.suggestion-item {
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.input-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
+.btn-lg {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+/* ===== Preferences Page ===== */
+.preferences-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.saved-preferences-container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.saved-preferences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* ===== Saved Preferences Cards ===== */
+.pref-card {
+    position: relative;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.pref-card.hovered {
+    border-color: var(--primary-accent);
+    background: rgba(173, 216, 230, 0.05);
+    transform: translateY(-5px);
+    z-index: 1; /* Bring hovered card to front */
+}
+
+.pref-card .pref-details {
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.pref-card.hovered .pref-details {
+    max-height: 200px; /* Adjust based on content */
+    opacity: 1;
+}
+
+.pref-card .pref-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.7rem;
+}
+
+.pref-card .pref-header h5 {
+    color: var(--primary-accent);
+    margin: 0;
+}
+
+.pref-card .pref-header small {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.pref-card .pref-details span {
+    display: block;
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.pref-card .use-pref-btn {
+    background: var(--primary-accent);
+    color: #1e1e1e !important;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+.use-pref-btn:hover {
+    background: var(--primary-accent-hover);
+    transform: translateY(-2px);
+}
+
+.use-pref-btn .fa-spinner {
+    margin-right: 0.5rem;
+}
+
+.use-pref-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.no-preferences {
+    text-align: center;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Delete Button */
+.pref-card .remove-btn {
+    position: absolute;
+    top: 0.05rem;
+    right: 0.05rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 0.2rem 0.5rem;
+    z-index: 2;
+}
+
+.pref-card .remove-btn:hover {
+    color: var(--primary-accent);
+}
+
+/* ===== Section Titles ===== */
+.section-title {
+    color: var(--primary-accent);
+    text-align: center;
+    margin: 2rem 0 1rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== Difficulty Cards ===== */
+.difficulty-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr)); /* 4 cards in one line */
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .difficulty-cards {
+        grid-template-columns: repeat(2, minmax(150px, 1fr)); /* 2 cards per line on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .difficulty-cards {
+        grid-template-columns: repeat(1, minmax(150px, 1fr)); /* 1 card per line on mobile */
+    }
+}
+
+.difficulty-card {
+    padding: 1rem; /* Reduced padding */
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 120px; /* Reduced height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.difficulty-card:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.1);
+}
+
+.difficulty-card.selected {
+    border-color: var(--primary-accent);
+    background: rgba(173, 216, 230, 0.05);
+    transform: scale(1.05);
+}
+
+/* ===== Time Picker ===== */
+.time-picker {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+.time-option {
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-option:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.1);
+}
+
+.time-option.selected {
+    border-color: var(--primary-accent);
+    background: rgba(173, 216, 230, 0.05);
+    transform: scale(1.05);
+}
+
+/* ===== Button Container ===== */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10rem;
+    margin-top: 2rem;
+}
+
+.btn-custom {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-custom.back-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: #fdfdfd !important;
+    margin: 0;
+}
+
+.btn-custom.back-btn:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-2px);
+}
+
+.btn-custom.continue-btn {
+    background: var(--primary-accent);
+    color: #1e1e1e;
+}
+
+.btn-custom.continue-btn:hover {
+    background: var(--primary-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.2);
+}
+
+/* Allergy Pills */
+.allergy-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.allergy-pill {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.allergy-pill:hover {
+    border-color: var(--primary-accent);
+}
+
+.allergy-pill.selected {
+    border-color: var(--primary-accent);
+    background: rgba(173, 216, 230, 0.05);
+}
+
+/* Save Section */
+.save-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary-accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.manual-input-page .progress {
+    width: 33%;
+}
+
+.preferences-page .progress {
+    width: 66%;
+}
+
+/* Modal for Validation */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.modal-content .btn {
+    margin-top: 1rem;
+}
+
+/* ===== Recommendations Page ===== */
+.recommendations-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.recommendations-title {
+    text-align: center;
+    color: var(--primary-accent);
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+/* Recipe Grid */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    align-items: stretch;
+}
+
+/* Recipe Card */
+.recipe-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Container */
+.recipe-image-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.recipe-time {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* Content Area */
+.recipe-main-content {
+    flex-grow: 1;
+}
+
+.recipe-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    height: calc(100% - 250px); /* Adjust based on image height */
+}
+
+/* Title Section */
+.recipe-header {
+    margin-bottom: 0.5rem;
+}
+
+.recipe-title {
+    color: var(--primary-accent);
+    font-size: 1.4rem;
+    margin: 0;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+/* Stats Section */
+.recipe-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.stat-item i {
+    color: var(--primary-accent);
+    font-size: 1.1rem;
+}
+
+/* Ingredients List */
+.ingredients-list {
+    flex-grow: 1;
+}
+
+.ingredients-list h4 {
+    color: var(--primary-accent);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.ingredients-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ingredients-list li {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* Buttons */
+.recipe-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto; /* This pushes buttons to bottom */
+}
+
+.btn-view-recipe {
+    background: var(--primary-accent);
+    color: #1e1e1e !important;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.btn-view-recipe:hover {
+    background: var(--primary-accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-source {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-accent) !important;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary-accent);
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.btn-source:hover {
+    background: rgba(173, 216, 230, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .recipe-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipe-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipe-title {
+        font-size: 1.2rem;
+    }
+    
+    .ingredients-list li {
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .recipe-meta {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .recipe-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Recipe Detail Page Styles */
+.recipe-detail-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.recipe-detail-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.recipe-detail-title {
+    color: var(--primary-accent);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-detail-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.recipe-detail-image {
+    margin-bottom: 2rem;
+}
+
+.recipe-detail-image img {
+    width: 100%;
+    border-radius: 15px;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.recipe-detail-ingredients,
+.recipe-detail-instructions {
+    margin-bottom: 2rem;
+}
+
+.recipe-detail-ingredients h2,
+.recipe-detail-instructions h2 {
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.recipe-detail-ingredients ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.recipe-detail-ingredients li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instructions-content {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.no-instructions {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.btn-back {
+    background: var(--primary-accent);
+    color: #1e1e1e !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: var(--primary-accent-hover);
+    transform: translateY(-2px);
+}
+
+
+/* Upload Image Page */
+.upload-image-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.drag-drop-area {
+    padding: 2rem;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.drag-drop-area:hover {
+    border-color: var(--primary-accent);
+    background: rgba(173, 216, 230, 0.05);
+}
+
+.drag-drop-area i {
+    font-size: 3rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.drag-drop-area p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.drag-drop-area span {
+    display: block;
+    margin: 1rem 0;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.image-preview {
+    display: none;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+#clearImageBtn {
+    margin-top: 1rem;
+}
+
+.detected-ingredients {
+    margin-top: 2rem;
+}
+
+.detected-ingredients h4 {
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+/* Button Styles */
+
+.upload-image-container .btn-custom:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.upload-image-container .btn-custom i {
+    font-size: 1.2rem;
+}
+
+/* ===== Camera Button Specific ===== */
+#fileInputLabel {
+    padding: 14px 20px;
+    line-height: 1;
+    position: relative;
+}
+
+#fileInputLabel i {
+    font-size: 1.4rem;
+    position: relative;
+    top: 1px; /* Fine-tune icon alignment */
+}
+
+/* ===== Button Container ===== */
+.button-container {
+    display: flex;
+    gap: 12px; 
+    justify-content: center;
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+    padding: 0 15px;
+}

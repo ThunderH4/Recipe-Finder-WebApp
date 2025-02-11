@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Manual Input{% endblock %}
+
+{% block content %}
+<div class="form-container manual-input-page">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+    
+    <h2 class="text-center mb-4">What's in Your Kitchen?</h2>
+    
+    <div class="ingredient-input">
+        <div class="tags-container" id="tagsContainer"></div>
+        
+        <div class="input-wrapper">
+            <div class="input-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <input type="text" 
+                   id="ingredientInput" 
+                   placeholder="Search ingredients..."
+                   autocomplete="off">
+            <div class="suggestions" id="suggestions"></div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a class="btn btn-custom btn-lg" id="submitIngredients" href="{{ url_for('main.preferences') }}">
+                <i class="fas fa-utensils me-2"></i>Find Recipes
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Link to JavaScript -->
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ingredients.js') }}"></script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Upload Image{% endblock %}
+
+{% block content %}
+<div class="upload-image-container">
+    <h2 class="text-center mb-4">Upload or Capture an Image</h2>
+
+    <!-- Image Upload/Capture Section -->
+    <div class="image-input-section">
+        <!-- Drag & Drop Area -->
+        <div class="drag-drop-area" id="dragDropArea">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag & Drop your image here</p>
+            <span>OR</span>
+            <input type="file" id="fileInput" accept="image/*" capture="camera" hidden>
+            <label for="fileInput" id="fileInputLabel" class="btn-custom">
+                <i class="fas fa-camera"></i> Browse or Capture
+            </label>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="image-preview" id="imagePreview">
+            <img id="previewImage" src="#" alt="Image Preview">
+            <button class="btn-custom" id="clearImageBtn">
+                <i class="fas fa-times"></i> Clear Image
+            </button>
+        </div>
+    </div>
+
+    <!-- Detected Ingredients Section -->
+    <div class="detected-ingredients" id="detectedIngredients">
+        <h4>Detected Ingredients</h4>
+        <div class="tags-container" id="tagsContainer"></div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a href="{{ url_for('main.recipe_input') }}" class="btn-custom back-btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <button class="btn-custom" id="processImageBtn">
+            <i class="fas fa-magic"></i> Detect Ingredients
+        </button>
+        <button class="btn-custom continue-btn" id="continueBtn" disabled>
+            <i class="fas fa-arrow-right"></i> Continue
+        </button>
+    </div>
+</div>
+<div id="manualInputUrl" data-url="{{ url_for('main.manual_input') }}" hidden></div>
+<!-- Link to JavaScript -->
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/upload_image.js') }}"></script>
+{% endblock %}
+{% endblock %}

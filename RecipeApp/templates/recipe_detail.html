@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="recipe-detail-container">
+    <!-- Recipe Header -->
+    <div class="recipe-detail-header">
+        <h1 class="recipe-detail-title">{{ recipe.title }}</h1>
+        <div class="recipe-detail-meta">
+            <span class="detail-time">
+                <i class="fas fa-clock"></i> {{ recipe.time }} mins
+            </span>
+            <span class="detail-servings">
+                <i class="fas fa-users"></i> {{ recipe.servings }} servings
+            </span>
+            <span class="detail-calories">
+                <i class="fas fa-fire"></i> {{ recipe.calories }} kcal
+            </span>
+        </div>
+    </div>
+
+    <!-- Recipe Image -->
+    <div class="recipe-detail-image">
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+    </div>
+
+    <!-- Ingredients Section -->
+    <div class="recipe-detail-ingredients">
+        <h2><i class="fas fa-carrot"></i> Ingredients</h2>
+        <ul>
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Instructions Section -->
+    <div class="recipe-detail-instructions">
+        <h2><i class="fas fa-list-ol"></i> Instructions</h2>
+        {% if recipe.instructions %}
+        <div class="instructions-content">
+            {{ recipe.instructions|safe }}
+        </div>
+        {% else %}
+        <div class="no-instructions">
+            <p>Instructions not available. Please visit the source website.</p>
+            <a href="{{ recipe.source_url }}" target="_blank" class="btn-source">
+                <i class="fas fa-external-link-alt"></i> View Original Recipe
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="recipe-detail-back">
+        <a href="{{ url_for('main.recommendations') }}" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Recommendations
+        </a>
+    </div>
+</div>
+{% endblock %}

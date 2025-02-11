@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Create Recipe{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <h2 class="text-center mb-4">How Would You Like to Start?</h2>
+    
+    <div class="input-options">
+        <!-- Image Upload Option -->
+        <a href="{{ url_for('main.upload_image') }}" class="input-option">
+            <i class="fas fa-camera"></i>
+            <h4>Upload Ingredients Photo</h4>
+            <p>We'll automatically detect ingredients from your image</p>
+        </a>
+
+        <!-- Manual Input Option -->
+        <a href="{{ url_for('main.manual_input') }}" class="input-option">
+            <i class="fas fa-keyboard"></i>
+            <h4>Enter Ingredients Manually</h4>
+            <p>Type or paste your ingredients list</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

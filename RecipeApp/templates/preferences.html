@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="preferences-page preferences-container">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <h2>Your Cooking Preferences</h2>
+
+    <!-- Saved Preferences Section -->
+    <div class="saved-preferences-container">
+        <h4>Your Saved Preferences</h4>
+        
+        {% if saved_prefs %}
+        <div class="saved-preferences-grid">
+            {% for pref in saved_prefs %}
+            <div class="pref-card" data-pref-id="{{ pref.id }}">
+                <button class="remove-btn">&times;</button>
+                <div class="pref-header">
+                    <h5>{{ pref.name }}</h5>
+                    <small>{{ pref.created_at.strftime('%d %b %Y') }}</small>
+                </div>
+                <div class="pref-details">
+                    {% if pref.max_time %}<span>⏱ {{ pref.max_time }} mins</span>{% endif %}
+                    {% if pref.difficulty %}<span>📊 {{ pref.difficulty|capitalize }}</span>{% endif %}
+                    {% if pref.diet %}<span>🥗 {{ pref.diet }}</span>{% endif %}
+                    {% if pref.allergies %}<span>🚫 {{ pref.allergies }}</span>{% endif %}
+                    <button class="use-pref-btn" data-pref-id="{{ pref.id }}">
+                        <i class="fas fa-arrow-right"></i> Use This
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-preferences">
+            <p>No saved preferences yet</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Preferences Form -->
+    <form id="preferencesForm" class="preference-form">
+        <!-- Difficulty Section -->
+        <div class="section-title">Choose Difficulty Level</div>
+        <div class="difficulty-cards">
+            <div class="difficulty-card" data-difficulty="any">
+                <i class="fas fa-utensils"></i>
+                <h5>Any Level</h5>
+                <p>All recipes welcome</p>
+            </div>
+            <div class="difficulty-card" data-difficulty="beginner">
+                <i class="fas fa-mortar-pestle"></i>
+                <h5>Beginner</h5>
+                <p>Simple & easy</p>
+            </div>
+            <div class="difficulty-card" data-difficulty="intermediate">
+                <i class="fas fa-cheese"></i>
+                <h5>Intermediate</h5>
+                <p>Some experience</p>
+            </div>
+            <div class="difficulty-card" data-difficulty="advanced">
+                <i class="fas fa-chef-hat"></i>
+                <h5>Advanced</h5>
+                <p>Challenge me!</p>
+            </div>
+        </div>
+
+        <!-- Time Section -->
+        <div class="section-title">Select Cooking Time</div>
+        <div class="time-picker">
+            <div class="time-option" data-time="30">
+                <h5>&lt; 30 mins</h5>
+                <small>Quick meals</small>
+            </div>
+            <div class="time-option" data-time="60">
+                <h5>30-60 mins</h5>
+                <small>Standard</small>
+            </div>
+            <div class="time-option" data-time="90">
+                <h5>&gt; 60 mins</h5>
+                <small>Leisurely</small>
+            </div>
+        </div>
+
+        <!-- Allergy Section -->
+        <div class="section-title">Allergy Restrictions</div>
+        <div class="allergy-section">
+            <div class="allergy-pills">
+                <div class="allergy-pill" data-allergy="dairy">
+                    Dairy Free
+                </div>
+                <div class="allergy-pill" data-allergy="gluten">
+                    Gluten Free
+                </div>
+                <div class="allergy-pill" data-allergy="nuts">
+                    Nut Free
+                </div>
+                <div class="allergy-pill" data-allergy="soy">
+                    Soy Free
+                </div>
+            </div>
+        </div>
+
+        <!-- Save Section -->
+        <div class="save-section">
+            <div class="form-check form-switch">
+                <input type="checkbox" id="savePreference" class="form-check-input">
+                <label class="form-check-label" for="savePreference">Save these preferences</label>
+            </div>
+            <input type="text" id="preferenceName" class="form-control mt-2" 
+                   placeholder="Name this profile">
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <a href="{{ url_for('main.manual_input') }}" class="btn btn-custom back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+            <button type="submit" class="btn btn-custom continue-btn">
+                <i class="fas fa-arrow-right"></i> Continue
+            </button>
+        </div>
+    </form>
+
+    <!-- Validation Modal -->
+    <div id="validationModal" class="modal">
+        <div class="modal-content">
+            <h4>Please Enter a Name</h4>
+            <p>You must provide a name for your preferences to save them.</p>
+            <button class="btn btn-custom" onclick="closeModal()">Okay</button>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/preferences.js') }}"></script>
+{% endblock %}

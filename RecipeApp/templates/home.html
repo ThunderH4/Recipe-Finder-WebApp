@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <!-- Animated Welcome Text -->
+    <div class="welcome-header">
+        <div class="welcome-header">
+            <h1 class="main-title">Welcome to QUICKRECIPE</h1>
+            <p class="sub-title">where we find the best recipes for you to enjoy 🥗</p>
+        </div>
+    </div>
+    <div class="action-cards">
+        {% if current_user.is_authenticated %}
+            <!-- Recipe Creation Card for logged in -->
+            <div class="action-card create-recipe">
+                <div class="card-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Let's Make a Recipe for You</h3>
+                <p>Start by uploading ingredients photo or entering them manually</p>
+                <a href="{{ url_for('main.recipe_input') }}" class="btn btn-custom">
+                    Start Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+          
+            <!-- Recipe History Card for logged in -->
+            <div class="action-card recipe-history">
+                <div class="card-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3>Explore Your Recipe History</h3>
+                <p>Review your previous creations and favorite recipes</p>
+                <a href="{{ url_for('main.profile') }}" class="btn btn-custom">
+                    View History <i class="fas fa-book-open"></i>
+                </a>
+            </div>
+
+        {% else %}   
+
+            <!-- Recipe Creation Card for non logged in -->
+            <div class="action-card create-recipe">
+                <div class="card-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Let's Make a Recipe for You</h3>
+                <p>Start by uploading ingredients photo or entering them manually</p>
+                <a href="{{ url_for('main.login') }}" class="btn btn-custom">
+                    Start Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Recipe History Card for non logged in -->
+            <div class="action-card recipe-history">
+                <div class="card-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3>Explore Your Recipe History</h3>
+                <p>Review your previous creations and favorite recipes</p>
+                <a href="{{ url_for('main.login') }}" class="btn btn-custom">
+                    View History <i class="fas fa-book-open"></i>
+                </a>
+            </div>
+
+        {% endif %} 
+
+    </div>
+</div>
+{% endblock %}

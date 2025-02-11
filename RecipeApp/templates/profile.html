@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>{{ nickname }}'s Recipe History</h2>
+    
+    <!-- Favorites Section -->
+    <div class="history-section">
+        <h3><i class="fas fa-heart"></i> Favorite Recipes</h3>
+        <div class="placeholder-content">
+            <p>Your favorite recipes will appear here</p>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="history-section">
+        <h3><i class="fas fa-clock-rotate-left"></i> Recent Activity</h3>
+        <div class="placeholder-content">
+            <p>Your recipe generation history will appear here</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
