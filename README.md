@@ -2,7 +2,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-lightgrey)](https://flask.palletsprojects.com/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 A web service that recommends recipes based on ingredients detected from images or manual input and user preferences.
 
@@ -15,10 +14,19 @@ A web service that recommends recipes based on ingredients detected from images 
 - 🔐 User authentication
 - 📱 Responsive design
 
+![Home Page](screenshots/home.png)
+*Home Page*
+
+![Upload Page](screenshots/upload.png)
+*Image upload interface with drag-and-drop*
+
+![Recipes Page](screenshots/recipes.png)
+*Recommended recipes based on ingredients*
+
 ## Installation ⚙️
 1. Clone repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
+git clone https://github.com/ThunderH4/Recipe-Finder-WebApp.git
 cd REPO_NAME
 ```
 
